@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>GC Puzzle</title>
+
+<!-- Style sheet for definining the basic look of the page -->
+<style>
+a {
+  text-decoration:none
+}
+a:hover {
+  color:#FF8080
+}
+
+#puzzleBackground {
+    background-color: #487070;
+    border-radius: 5px;
+    padding: 10px;
+    width: 810px;
+    height: 400px;
+    overflow: hidden;
+    margin-left: 0px;
+}
+.image {
+  position: absolute;
+  border: 1px solid #ffffff;
+  object-fit: none;
+  object-position: 0 0;
+  margin-left: 0px;
+  margin-top: 0px;
+  width: 99px;
+  height: 99px;
+}
+
+.circle {
+    border-radius: 50%;
+    behavior: url(PIE.htc);
+    width: 100px;
+    height: 100px;
+    background: #98b8b0;
+    border: 3px solid #487070;
+}
+
+</style>
+<script src="./puzzle/prefixfree.min.js"></script>
+<script src="./sound/soundjs-NEXT.combined.js"></script>
+</head>
+
+<!-- Start of visible page -->
+<body bgcolor="#ffffff" link="#487070" vlink="#487070">
+  <table height="100%" border="0" cellspacing="0" cellpadding="20">
+    <tbody>
+      <tr>
+      <td width="184" valign="TOP" bgcolor="#e8f4d8">
+      <center>
+        <font size="5" face="Lucida Console" class = "circle" >Bcodemaster</font>
+      </center>
+          <br>
+          <br>
+      <center>
+          <font color="#000000" face="Arial, Helvetica" size="+1">
+            <center>
+            <b>
+            <font color="#98b8b0">Clic Para</font>
+            <br>
+            <font color= "#487070">Jugar</font>
+            <br>
+            </b>
+            </center>
+            <br>
+            <br>
+          </font>
+          <font color="#000000" face="Arial, Helvetica" size="+0">
+          <a href="index.html">Inglés</a>
+          <br>
+          <a href="indice.html">Español</a>
+          </font>
+          <br>
+          <br>
+          <font color="#000000" face="Arial, Helvetica" size="+0">
+            <br>
+            <br>
+            <font color="#98b8b0" size="+1">Links</font>
+            <br>
+            <br>
+            <a href="https://bcodemaster.github.io/school.html">Mis Projectos</a>
+            <br>
+            <br>
+            <a href="https://bcodemaster.github.io/SpaceRocket/index.html">Space Rocket</a>
+            <br>
+            <br>
+            <a href="https://bcodemaster.github.io/TitTacToeJS/index.html">Tic Tac Toe JS</a>
+          </font>
+        </center>
+      </td>
+      <td valign="TOP">
+      <font face="Arial, Helvetica">
+      <font size="-10">
+          <br>
+      </font>
+      <font size="7">
+          <b><i>GC Puzzle</i></b>
+      </font>
+          <br>
+          <h2>Introducción</h2>
+          <p>¿Alguna vez quisiste jugar tus Gaming Classics favoritos como un rompecabezas en tu computadora?
+              <br>¡No busques más, presentando <i> GC Puzzle </i> el juego de rompecabezas en línea creado en JavaScript para tu entretenimiento!
+              <br>Este juego de rompecabezas incluye los siguientes títulos clásicos: Super Mario Bros, La leyenda de Zelda, Sonic The Hedgehog 2 y Street Fighter II. </p>
+          <h2>Como Jugar</h2>
+          <p>Simplemente use su mouse para guiar el puntero dentro de la caja y haga "Clic" en la pieza del rompecabezas cerca del espacio vacío para hacer su movimiento.
+          <br>"Actualize" la página para cargar otro rompecabezas aleatoriamente. </p>
+          <br>
+
+          <!-- Everything on the page goes into this DIV element -->
+          <div id = "puzzleBackground">
+          <!-- image background you need to complete -->
+              <img src="./puzzle/puzzle.png" height="400" width="400"/>
+              &nbsp;
+          <!-- Images for each tile. Note the src image is not defined; it is added for each image in code later -->
+          <!-- row 1 -->
+              <img id="tile1" class="image" src="#" style="margin: 0 0 0 0;" alt="1" onclick="moveTile(this);"/>
+              <img id="tile2" class="image" src="#" style="margin: 0 0 0 100px;" alt="2" onclick="moveTile(this);"/>
+              <img id="tile3" class="image" src="#" style="margin: 0 0 0 200px;" alt="3" onclick="moveTile(this);"/>
+              <img id="tile4" class="image" src="#" style="margin: 0 0 0 300px;" alt="4" onclick="moveTile(this);"/>
+          <!-- row 2 -->
+              <img id="tile5" class="image" src="#" style="margin: 100px 0 0 0;" alt="5" onclick="moveTile(this);"/>
+              <img id="tile6" class="image" src="#" style="margin: 100px 0 0 100px;" alt="6" onclick="moveTile(this);"/>
+              <img id="tile7" class="image" src="#" style="margin: 100px 0 0 200px;" alt="7" onclick="moveTile(this);"/>
+              <img id="tile8" class="image" src="#" style="margin: 100px 0 0 300px;" alt="8" onclick="moveTile(this);"/>
+          <!-- row 3 -->
+              <img id="tile9"  class="image" src="#" style="margin: 200px 0 0 0;" alt="9" onclick="moveTile(this);"/>
+              <img id="tile10" class="image" src="#" style="margin: 200px 0 0 100px;" alt="10" onclick="moveTile(this);"/>
+              <img id="tile11" class="image" src="#" style="margin: 200px 0 0 200px;" alt="11" onclick="moveTile(this);"/>
+              <img id="tile12" class="image" src="#" style="margin: 200px 0 0 300px;" alt="12" onclick="moveTile(this);"/>
+          <!-- row 4 -->
+              <img id="tile13" class="image" src="#" style="margin: 300px 0 0 0;" alt="13" onclick="moveTile(this);"/>
+              <img id="tile14" class="image" src="#" style="margin: 300px 0 0 100px;" alt="14" onclick="moveTile(this);"/>
+              <img id="tile15" class="image" src="#" style="margin: 300px 0 0 200px;" alt="15" onclick="moveTile(this);"/>
+              <img id="tile16" class="image" src="#" style="margin: 300px 0 0 300px; visibility:hidden;" alt="16"/>      <!-- invisible empty tile -->
+          </div>
+          <!-- JavaScript code displays or hides the selected item of clothing -->
+          <script type="text/javascript">
+
+      // Define array for the playboard
+              var playboard = [
+              ['', '', '', ''],
+              ['', '', '', ''],
+              ['', '', '', ''],
+              ['', '', '', '']
+            ]
+
+      // Create an array of puzzle images to use, then choose one at random
+              var backgrounds = ["smb.jpg", "zelda.jpg", "sonic2.jpg", "SF2.jpg"];
+              var bg = Math.floor((Math.random() * 4));
+
+      // Define an array of 16 numbers, and shuffle the array to mix up the puzzle
+              var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+              shuffle(arr);
+
+      // Find all "img" tags, go through each one, and place in rows and columns
+              var images = document.getElementsByTagName("img");
+              var tileCount = 0
+              for (var i = 0, length = playboard.length; i < length; i++) {
+              for (var j = 0, lengthElem = playboard[i].length; j < lengthElem; j++) {
+              var tile = document.getElementById("tile" + arr[tileCount]);
+              tile.style.marginLeft = j + "00px";
+              tile.style.marginTop = i + "00px";
+              images[tileCount].src = "./puzzle/" + backgrounds[bg];
+              images[tileCount].style.objectPosition = (-j + "00px ") + (-i + "00px");
+              playboard[j][i] = "tile" + arr[tileCount];
+              tileCount++;
+             }
+            }
+
+      // Move a tile (if it can)
+              function moveTile(tile){
+                  var rowcol = getRowColumn(tile);
+                  canMove(tile, rowcol["col"], rowcol["row"]);
+             }
+
+      // Verifies if a tile can be moved up, down, right, or left (can only be one of these, or none of these)
+              function canMove(tile, col, row){
+                  var button = document.getElementById(tile)
+                  if (row > 0 && playboard[col][row - 1] == 'tile16')
+                    swapTiles(col, row, col, row - 1);                  // move up
+                  if (row < 3 && playboard[col][row + 1] == 'tile16')
+                    swapTiles(col, row, col, [row + 1]);              // move down
+                  if (col > 0 && playboard[col -1][row] == 'tile16')
+                    swapTiles(col, row, [col - 1], [row]);              // move left
+                  if (col < 3 && playboard[col + 1][row] == 'tile16')
+                    swapTiles(col, row, [col + 1], [row]);              // move right
+              }
+
+      // Swap clicked-on tile with the invisible empty tile
+              function swapTiles(sourceCol, sourceRow, targetCol, targetRow) {
+                  var tileSource = document.getElementById(playboard[sourceCol][sourceRow]);
+                  var tileTarget = document.getElementById(playboard[targetCol][targetRow]);
+                  var tempTargetTop = tileTarget.style.marginTop;
+                  var tempTargetLeft = tileTarget.style.marginLeft;
+
+                  playboard[targetCol][targetRow] = tileSource.id;
+                  playboard[sourceCol][sourceRow] = tileTarget.id;
+
+                  tileTarget.style.marginTop = tileSource.style.marginTop;
+                  tileTarget.style.marginLeft = tileSource.style.marginLeft;
+                  tileSource.style.marginTop = tempTargetTop;
+                  tileSource.style.marginLeft = tempTargetLeft;
+              }
+
+      // Get the row and column of the specified tile (returns a two-element array, row/column)
+              function getRowColumn(tile){
+                  var rc = new Array();
+                  switch(tile.style.marginTop) {
+                    case "0px":
+                      rc['row'] = 0;
+                      break;
+                    case "100px":
+                      rc['row'] = 1;
+                      break;
+                    case "200px":
+                      rc['row'] = 2;
+                      break;
+                    case "300px":
+                      rc['row'] = 3;
+                      break;
+              }
+                  switch(tile.style.marginLeft) {
+                    case "0px":
+                      rc['col'] = 0;
+                      break;
+                    case "100px":
+                      rc['col'] = 1;
+                      break;
+                    case "200px":
+                      rc['col'] = 2;
+                      break;
+                    case "300px":
+                      rc['col'] = 3;
+                      break;
+                  }
+                    return rc;
+                  }
+
+      // Low-level array shuffle routine
+              function shuffle(array) {
+        // stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+              var currentIndex = array.length, temporaryValue, randomIndex;
+              while (0 !== currentIndex) {
+                  randomIndex = Math.floor(Math.random() * currentIndex);
+                  currentIndex -= 1;
+                  temporaryValue = array[currentIndex];
+                  array[currentIndex] = array[randomIndex];
+                  array[randomIndex] = temporaryValue;
+              }
+                  return array;
+              }
+      //This is the music/SFX portion of the Puzzle Game
+              window.addEventListener("load", init);
+              window.addEventListener("keydown", soundPlay);
+
+      //This is button configuration for activating the Theme music
+              function soundPlay(ev) {
+      //Themes
+              if (ev.keyCode == 49) { createjs.Sound.play("smb"); } // 1
+              if (ev.keyCode == 50) { createjs.Sound.play("zelda"); } // 2
+              if (ev.keyCode == 51) { createjs.Sound.play("sonic2"); } // 3
+              if (ev.keyCode == 52) { createjs.Sound.play("SF2"); } // 4
+              if (ev.keyCode == 71) { createjs.Sound.play("Guile"); } // G
+      //SFX
+              if (ev.keyCode == 77) { createjs.Sound.play("1up"); } // M
+              if (ev.keyCode == 90) { createjs.Sound.play("secret"); } // S
+              if (ev.keyCode == 74) { createjs.Sound.play("sonicJump"); } // J
+              if (ev.keyCode == 72) { createjs.Sound.play("hadouken"); } // H
+              if (ev.keyCode == 83) { createjs.Sound.play("sonicboom"); } // S
+      }
+      //This is where JavaScript gets the music from "music" folder
+              function init() {
+                  if (!createjs.Sound.initializeDefaultPlugins()) {
+                    console.log ("Error loading SoundJS");
+                  } else {
+                    console.log ("Success loading SoundJS");
+                    createjs.Sound.addEventListener("fileload", playSound);
+                    createjs.Sound.alternateExtensions = ["mp3","WAV"];
+                    createjs.Sound.registerSounds(
+                  [ //Themes
+                    {id: "smb",  src: "SMB.mp3"},
+                    {id: "zelda",src: "Zelda.mp3"},
+                    {id: "sonic2",  src: "Sonic2.mp3"} ,
+                    {id: "SF2",  src: "SF2.mp3"},
+                    {id: "Guile",  src: "GuileStage.mp3"},
+              //SFX
+                    {id: "1up",  src: "1Up.mp3"},
+                    {id: "secret",src: "Secret.mp3"},
+                    {id: "sonicJump",  src: "SonicJump.wav"} ,
+                    {id: "hadouken",  src: "Hadouken.wav"},
+                    {id: "sonicboom",  src: "SonicBoom.wav"}   ],
+                    "./sound/");
+                   }
+              }
+
+              function playSound(ev) {
+                console.log("Preloaded:", ev.id, ev.src);
+              }
+
+          </script>
+          <h2>Sounds SFX (Bono Additional) </h2>
+              <p>¿quieres escuchar tu favorito  "Classic Game" temas y SFX mientras juegas? Sólo tiene que presionar la tecla correspondiente:
+          <br/>
+          <br/>
+              <b>Temas &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp; SFX</b>
+          <br/>
+          <img width="60" height="60" src="./img/1.png" border="0"> Presione 1 - Super Mario Bros. "Underworld" Tema <img width="30" height="50" src="./img/smb.png" border="0">&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp; <img width="60" height="60" src="./img/m.png" border="0"> Presione M - Super Mario Bros. "1-UP" <img width="40" height="40" src="./img/1up.png" border="0">
+          <br/>
+          <img width="60" height="60" src="./img/2.png" border="0"> Presione 2 - La Legenda de Zelda "Título" Tema <img width="36" height="40" src="./img/link.png" border="0"> &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp; <img width="60" height="60" src="./img/z.png" border="0"> Presione Z - La Legenda de Zelda "Secreto Descubierto" <img width="30" height="50" src="./img/secret.png" border="0">
+          <br/>
+          <img width="60" height="60" src="./img/3.png" border="0"> Presione 3 - Sonic The Hedgehog 2 "Emerald Hill Zone" Tema <img width="35" height="55" src="./img/sonic2.png" border="0"> <img width="60" height="60" src="./img/j.png" border="0"> Presione J - Sonic The Hedgehog 2 "Sonic Salta" <img width="150" height="50" src="./img/sonicJump.png" border="0">
+          <br/>
+          <img width="60" height="60" src="./img/4.png" border="0"> Presione 4 - Street Fighter II "Intro" Tema <img width="39" height="60" src="./img/ryu.gif" border="0"> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp; <img width="60" height="60" src="./img/h.png" border="0"> Presione H - Street Fighter II "Ryu's Hadouken" <img width="75" height="50" src="./img/hadouken.png" border="0">
+          <br/>
+          <img width="60" height="60" src="./img/G.png" border="0"> Presione G - Street Fighter II "Escenario de Guile" Tema <img width="40" height="60" src="./img/Guile.gif" border="0"> &emsp;&emsp; <img width="60" height="60" src="./img/s.png" border="0"> Presione S - Street Fighter II "Guile's Sonic Boom" <img width="70" height="50" src="./img/sonicboom.png" border="0">
+          </p>
+          <p>
+          <table width="640" border="0">
+          <tbody>
+          </tbody>
+          </table>
+          </p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <hr>
+          <h2>¡Check out my other projects too!</h2>
+              <p>    <a href="https://bcodemaster.github.io/portfolio.html" target="_blank"><img width="240" height="150" src="./img/WE.png" border="0"/></a>
+              &nbsp; <a href="https://bcodemaster.github.io/SpaceRocket/index.html"><img width="240" height="150" src="./img/spacerocket.png" border="0"/></a>
+              &nbsp; <a href="https://bcodemaster.github.io/TitTacToeJS/index.html"><img width="240" height="150" src="./img/TTT.png" border="0"></a></p>
+              <p><font face="Arial, Helvetica"> Haga click al imagen para el Link... </p>
+          <br>
+          <br>
+                 </font>
+          <br>
+          </p><hr>
+          <center>
+          <font color="#000000" face="Arial, Helvetica" size="+0">
+          <br>
+              <p> <small> GC Puzzle © </small> </p>
+              <p> <small> Hecho por Byron Roa </small></p>
+              <p> <small> Todas las imágenes, sonidos y juegos son copyrighted de Nintendo, Sega y Capcom © respectivamente. </small> </p>
+              <!--The Following websites where used to collected the images, sprites and sounds in this game-->
+              <!--https://www.spriters-resource.com/  -->
+              <!-- https://www.sounds-resource.com/ -->
+              <!-- https://www.wpclipart.com/ -->
+          <br>
+          </font>
+          </center>
+    </td>
+    </tr>
+  </tbody>
+ </table>
+</body>
+</html>
